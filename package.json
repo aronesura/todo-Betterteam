@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Todo Api for Betterteam technical test",
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon --exec \"ts-node-esm\" index.ts",
