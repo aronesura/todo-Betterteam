@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { initDB } from './models';
+import Routes from './routes';
 
 class App {
   private app: Application;
@@ -30,11 +31,14 @@ class App {
     );
     this.app.use(bodyParser.json());
 
+    // Init routes
     this.app.get('/', async (req: Request, res: Response): Promise<Response> => {
       return res.status(200).send({
         message: 'Hello World!',
       });
     });
+
+    new Routes(this.app);
   }
 
   public start(): void {

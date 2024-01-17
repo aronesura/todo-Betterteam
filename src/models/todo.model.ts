@@ -1,15 +1,13 @@
-import { Model, Optional, DataTypes, Sequelize } from 'sequelize';
+import { Model, DataTypes, Sequelize } from 'sequelize';
 
-interface TodoAttributes {
+export interface TodoAttributes {
   id: string;
   task: string;
   status: string;
-  image: string;
+  image?: string;
 }
 
-interface TodoCreationAttributes extends Optional<TodoAttributes, 'id'> {}
-
-interface TodoInstance extends Model<TodoAttributes, TodoCreationAttributes>, TodoAttributes {
+export interface TodoInstance extends Model<TodoAttributes>, TodoAttributes {
   createdAt?: Date;
   updatedAt?: Date;
 }
