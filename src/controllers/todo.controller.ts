@@ -24,7 +24,10 @@ class TodoController {
 
       const validator = validatorFactory<TodoAttributes>(TodoCreateSchema);
       const data = validator.verify(uploadRes.body as TodoAttributes);
-      const newTodo = await model.create({ ...data, id: uuid(), image: uploadRes?.file.filename });
+      const newData = uploadRes?.file
+        ? { ...data, id: uuid(), image: uploadRes?.file.filename }
+        : { ...data, id: uuid() };
+      const newTodo = await model.create(newData);
 
       return res
         .status(201)
@@ -46,8 +49,6 @@ class TodoController {
   public async updateOne(req: Request, res: Response) {
     try {
       const uploadRes = await imageService.singleImageUpload(req, res);
-
-      console.log(uploadRes);
 
       const bodyValidator = validatorFactory<TodoAttributes>(TodoUpdateSchema);
       const data = bodyValidator.verify(uploadRes.body as TodoAttributes);
