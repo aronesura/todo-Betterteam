@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import { RouteInterface } from './route.interface';
-import todoRouter from './todo.route';
+import TodoRoute from './todo.route';
+import UploadRoute from './upload.route';
 
 class Routes {
   private app;
@@ -13,7 +14,8 @@ class Routes {
   }
 
   private initRouters() {
-    this.routers.push(new todoRouter({ path: 'todos' }));
+    this.routers.push(new TodoRoute({ path: 'todos' }));
+    this.routers.push(new UploadRoute({ path: 'upload' }));
   }
 
   public combineRouters(): void {

@@ -1,4 +1,4 @@
-export const TodoSchema = {
+export const TodoCreateSchema = {
   type: 'object',
   properties: {
     id: {
@@ -15,6 +15,25 @@ export const TodoSchema = {
     },
   },
   required: ['task', 'status'],
+  additionalProperties: false,
+};
+
+export const TodoUpdateSchema = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+    },
+    task: {
+      type: 'string',
+    },
+    status: {
+      type: 'string',
+    },
+    image: {
+      type: 'string',
+    },
+  },
   additionalProperties: false,
 };
 
