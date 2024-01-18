@@ -7,20 +7,20 @@ import db from '../models';
 import validatorFactory from '../utils/validator';
 import { TodoAttributes, TodoInstance } from '../models/todo.model';
 import { TodoCreateSchema, FindOneSchema, TodoUpdateSchema } from '../schemas/todo.schema';
-import UploadService, { uploadFolderPath } from '../services/upload.service';
+import ImageService, { uploadFolderPath } from '../services/image.service';
 
 let model: ModelCtor<TodoInstance>;
-let uploadService: UploadService;
+let imageService: ImageService;
 
 class TodoController {
   constructor() {
     model = db['Todo'];
-    uploadService = new UploadService();
+    imageService = new ImageService();
   }
 
   public async create(req: Request, res: Response) {
     try {
-      const uploadRes = await uploadService.singleImageUpload(req, res);
+      const uploadRes = await imageService.singleImageUpload(req, res);
 
       const validator = validatorFactory<TodoAttributes>(TodoCreateSchema);
       const data = validator.verify(uploadRes.body as TodoAttributes);
@@ -45,7 +45,7 @@ class TodoController {
 
   public async updateOne(req: Request, res: Response) {
     try {
-      const uploadRes = await uploadService.singleImageUpload(req, res);
+      const uploadRes = await imageService.singleImageUpload(req, res);
 
       const bodyValidator = validatorFactory<TodoAttributes>(TodoUpdateSchema);
       const data = bodyValidator.verify(uploadRes.body as TodoAttributes);

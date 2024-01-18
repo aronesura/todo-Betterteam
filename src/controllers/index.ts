@@ -1,2 +1,2 @@
 export { default as TodoController } from './todo.controller';
-export { default as UploadController } from './upload.controller';
+export { default as ImageController } from './image.controller';

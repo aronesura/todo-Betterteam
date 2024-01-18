@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { UploadController } from '../controllers';
+import { ImageController } from '../controllers';
 import { RouteConstructorInterface } from './route.interface';
 
-class UploadRoute {
+class ImageRoute {
   public path: string;
   public router = Router();
   private uploadController;
 
   constructor({ path }: RouteConstructorInterface) {
-    this.uploadController = new UploadController();
+    this.uploadController = new ImageController();
     this.path = path;
     this.initRoutes();
   }
@@ -19,4 +19,4 @@ class UploadRoute {
     this.router.get('/base64', this.uploadController.getOneBase64);
   }
 }
-export default UploadRoute;
+export default ImageRoute;

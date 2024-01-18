@@ -42,7 +42,7 @@ const uploadFile = multer({
   },
 }).single('image');
 
-class UploadService {
+class ImageService {
   constructor() {}
 
   public singleImageUpload = async (
@@ -61,4 +61,4 @@ class UploadService {
   };
 }
 
-export default UploadService;
+export default ImageService;

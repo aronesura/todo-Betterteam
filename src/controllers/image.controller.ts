@@ -1,20 +1,20 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { Request, Response } from 'express';
-import UploadService from '../services/upload.service';
+import ImageService from '../services/image.service';
 import validatorFactory from '../utils/validator';
 import { DownloadSchema } from '../schemas/upload.schema';
 
-let uploadService: UploadService;
+let imageService: ImageService;
 
-class UploadController {
+class ImageController {
   constructor() {
-    uploadService = new UploadService();
+    imageService = new ImageService();
   }
 
   public async upload(req: Request, res: Response) {
     try {
-      const data = await uploadService.singleImageUpload(req, res);
+      const data = await imageService.singleImageUpload(req, res);
 
       return res.status(data.file ? 201 : 400).json({
         data: data.file,
@@ -63,4 +63,4 @@ class UploadController {
   }
 }
 
-export default UploadController;
+export default ImageController;
