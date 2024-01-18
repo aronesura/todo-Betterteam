@@ -47,6 +47,8 @@ class TodoController {
     try {
       const uploadRes = await imageService.singleImageUpload(req, res);
 
+      console.log(uploadRes);
+
       const bodyValidator = validatorFactory<TodoAttributes>(TodoUpdateSchema);
       const data = bodyValidator.verify(uploadRes.body as TodoAttributes);
       const paramsValidator = validatorFactory<{ id: string }>(FindOneSchema);
@@ -59,14 +61,15 @@ class TodoController {
         fs.unlinkSync(imagePath);
       }
 
-      await model.update(
-        { ...data, image: uploadRes?.file.filename },
-        {
-          where: {
-            id,
-          },
+      const updatedData = uploadRes?.file
+        ? { ...data, image: uploadRes?.file.filename }
+        : { ...data };
+
+      await model.update(updatedData, {
+        where: {
+          id,
         },
-      );
+      });
 
       const updatedTodo = await model.findOne({ where: { id: id } });
 
