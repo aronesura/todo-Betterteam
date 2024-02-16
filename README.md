@@ -32,7 +32,7 @@ Then, you can make `.env` in the root directory.
 If you want to clone this repo, go to the command line and run:
 
 ```bash
-git clone git@github.com:aronesura/todo-Betterteam-BE.git
+git clone git@github.com/todo-Betterteam-BE.git
 cd todo-Betterteam-BE
 ```
 
